@@ -1,0 +1,146 @@
+{
+  "project_info": {
+    "project_number": "1035738985694",
+    "firebase_url": "https://basketball-scorer-ef69b-default-rtdb.firebaseio.com",
+    "project_id": "basketball-scorer-ef69b",
+    "storage_bucket": "basketball-scorer-ef69b.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1035738985694:android:96cea094f12675eaf93e4f",
+        "android_client_info": {
+          "package_name": "com.example.basketball_from_prd"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1035738985694-0vlf8c0sklbngneust7v8ma8qbj0gdih.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.basketball_from_prd",
+            "certificate_hash": "8989f6ff1d9b5c3a6ab8a932ae5010576c99a214"
+          }
+        },
+        {
+          "client_id": "1035738985694-ivflvseogeknijqfsd3ocrmai1pn1n85.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.basketball_from_prd",
+            "certificate_hash": "95a4b767a83aa551158b503d03fc484bb72bc0a7"
+          }
+        },
+        {
+          "client_id": "1035738985694-8fjku3omhar7btckqcbeh3iojverjblr.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAaH7AlZ8FbpvWrlQeBLHwV_X_vEc9tBj4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1035738985694-8fjku3omhar7btckqcbeh3iojverjblr.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1035738985694:android:b72657472aaed17ff93e4f",
+        "android_client_info": {
+          "package_name": "com.example.firebaseauthtest"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1035738985694-5he6031vghf5o3sorh11apfug7stvhoo.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.firebaseauthtest",
+            "certificate_hash": "fc1488250b1e21ddf986bf9b8e2472ca3ed875ac"
+          }
+        },
+        {
+          "client_id": "1035738985694-hfj73kibpqap953ebjk070a3mvbmfh0g.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.firebaseauthtest",
+            "certificate_hash": "8989f6ff1d9b5c3a6ab8a932ae5010576c99a214"
+          }
+        },
+        {
+          "client_id": "1035738985694-8fjku3omhar7btckqcbeh3iojverjblr.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAaH7AlZ8FbpvWrlQeBLHwV_X_vEc9tBj4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1035738985694-8fjku3omhar7btckqcbeh3iojverjblr.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1035738985694:android:e3574a50fcbe0136f93e4f",
+        "android_client_info": {
+          "package_name": "com.theballers.basketball"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1035738985694-coufdvhsasbdh3s8rro6oktmf64os1a3.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.theballers.basketball",
+            "certificate_hash": "8989f6ff1d9b5c3a6ab8a932ae5010576c99a214"
+          }
+        },
+        {
+          "client_id": "1035738985694-flv5jnte9redn64r2ov8doeb3c3cc9sk.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.theballers.basketball",
+            "certificate_hash": "95a4b767a83aa551158b503d03fc484bb72bc0a7"
+          }
+        },
+        {
+          "client_id": "1035738985694-8fjku3omhar7btckqcbeh3iojverjblr.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAaH7AlZ8FbpvWrlQeBLHwV_X_vEc9tBj4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1035738985694-8fjku3omhar7btckqcbeh3iojverjblr.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
