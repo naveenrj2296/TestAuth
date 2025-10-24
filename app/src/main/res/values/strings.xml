@@ -1,5 +1,5 @@
 <resources>
     <string name="app_name">FirebaseAuthTest</string>
     <!-- Google Sign-In Web Client ID -->
-    <string name="default_web_client_id">1035738985694-9jc63duvr4b16lul3p9bp9mj73gs534t.apps.googleusercontent.com</string>
+    <string name="default_web_client_id">1035738985694-8fjku3omhar7btckqcbeh3iojverjblr.apps.googleusercontent.com</string>
 </resources>

@@ -40,6 +40,8 @@ android {
         }
         debug {
             isDebuggable = true
+            // Disable baseline profiles for debug builds
+            isProfileable = false
         }
     }
     compileOptions {
@@ -51,6 +53,13 @@ android {
     }
     buildFeatures {
         compose = true
+    }
+    
+    // Fix baseline profile installation issues
+    packaging {
+        jniLibs {
+            useLegacyPackaging = true
+        }
     }
 }
 

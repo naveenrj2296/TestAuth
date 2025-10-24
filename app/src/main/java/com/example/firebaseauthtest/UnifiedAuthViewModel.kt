@@ -2,6 +2,7 @@ package com.example.firebaseauthtest
 
 import android.app.Activity
 import android.content.Intent
+import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -33,13 +34,16 @@ enum class AuthMethod {
 
 class UnifiedAuthViewModel : ViewModel() {
     private val phoneAuthViewModel = PhoneAuthViewModel()
-    private val googleAuthService = GoogleAuthService(android.app.Application())
-    private val truecallerAuthService = TruecallerAuthService(android.app.Application())
+    private lateinit var googleAuthService: GoogleAuthService
+    private lateinit var truecallerAuthService: TruecallerAuthService
     
     private val _state = MutableStateFlow(UnifiedAuthState())
     val state: StateFlow<UnifiedAuthState> = _state.asStateFlow()
     
-    init {
+    fun initializeServices(context: android.content.Context) {
+        googleAuthService = GoogleAuthService(context)
+        truecallerAuthService = TruecallerAuthService(context)
+        
         // Initialize authentication services
         googleAuthService.initializeGoogleSignIn()
         truecallerAuthService.initializeTruecallerSDK()
@@ -116,10 +120,25 @@ class UnifiedAuthViewModel : ViewModel() {
     }
     
     fun signInWithGoogle(activity: Activity) {
+        Log.d("UnifiedAuthViewModel", "🔵 Starting Google Sign-In...")
         googleAuthService.signInWithGoogle(activity)
     }
     
-    fun handleGoogleSignInResult(data: Intent?) {
+    fun handleGoogleSignInResult(result: androidx.activity.result.ActivityResult) {
+        Log.d("UnifiedAuthViewModel", "🔵 Handling Google Sign-In result: ${result.resultCode}")
+        if (result.resultCode == android.app.Activity.RESULT_OK) {
+            Log.d("UnifiedAuthViewModel", "✅ Google Sign-In successful, processing result...")
+            googleAuthService.handleGoogleSignInResult(result.data)
+        } else {
+            Log.d("UnifiedAuthViewModel", "❌ Google Sign-In failed or cancelled")
+            _state.value = _state.value.copy(
+                isLoading = false,
+                errorMessage = "Google Sign-In cancelled or failed"
+            )
+        }
+    }
+    
+    fun handleGoogleSignInResultData(data: Intent?) {
         googleAuthService.handleGoogleSignInResult(data)
     }
     

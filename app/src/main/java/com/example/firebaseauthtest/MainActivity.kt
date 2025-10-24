@@ -2,6 +2,7 @@ package com.example.firebaseauthtest
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
@@ -27,6 +28,7 @@ import com.example.firebaseauthtest.ui.theme.FirebaseAuthTestTheme
 class MainActivity : ComponentActivity() {
     private lateinit var googleSignInLauncher: androidx.activity.result.ActivityResultLauncher<IntentSenderRequest>
     private lateinit var truecallerSignInLauncher: androidx.activity.result.ActivityResultLauncher<IntentSenderRequest>
+    private var unifiedAuthViewModel: UnifiedAuthViewModel? = null
     
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -36,10 +38,18 @@ class MainActivity : ComponentActivity() {
         googleSignInLauncher = registerForActivityResult(
             ActivityResultContracts.StartIntentSenderForResult()
         ) { result ->
+            Log.d("MainActivity", "🔵 Google Sign-In result received: ${result.resultCode}")
+            Log.d("MainActivity", "🔵 Result data: ${result.data}")
+            Log.d("MainActivity", "🔵 Result extras: ${result.data?.extras}")
+            
+            // Handle the result directly
             if (result.resultCode == RESULT_OK) {
-                val data = result.data
-                // Handle Google Sign-In result
-                // This will be handled by the ViewModel
+                Log.d("MainActivity", "✅ Google Sign-In successful - result code: ${result.resultCode}")
+                Log.d("MainActivity", "🔵 Processing Google Sign-In result...")
+                // Pass the result to the ViewModel
+                unifiedAuthViewModel?.handleGoogleSignInResult(result)
+            } else {
+                Log.d("MainActivity", "❌ Google Sign-In failed or cancelled - result code: ${result.resultCode}")
             }
         }
         
@@ -60,7 +70,8 @@ class MainActivity : ComponentActivity() {
                         modifier = Modifier.padding(innerPadding),
                         activity = this@MainActivity,
                         googleSignInLauncher = googleSignInLauncher,
-                        truecallerSignInLauncher = truecallerSignInLauncher
+                        truecallerSignInLauncher = truecallerSignInLauncher,
+                        onViewModelCreated = { viewModel -> unifiedAuthViewModel = viewModel }
                     )
                 }
             }
@@ -75,14 +86,29 @@ fun UnifiedAuthScreen(
     viewModel: UnifiedAuthViewModel = viewModel(),
     activity: ComponentActivity,
     googleSignInLauncher: androidx.activity.result.ActivityResultLauncher<IntentSenderRequest>,
-    truecallerSignInLauncher: androidx.activity.result.ActivityResultLauncher<IntentSenderRequest>
+    truecallerSignInLauncher: androidx.activity.result.ActivityResultLauncher<IntentSenderRequest>,
+    onViewModelCreated: (UnifiedAuthViewModel) -> Unit = {}
 ) {
     val state by viewModel.state.collectAsState()
     
     // Set up activity result launchers
     LaunchedEffect(Unit) {
+        Log.d("UnifiedAuthScreen", "🚀 Initializing authentication services...")
+        viewModel.initializeServices(activity)
         viewModel.setGoogleActivityResultLauncher(googleSignInLauncher)
         viewModel.setTruecallerActivityResultLauncher(truecallerSignInLauncher)
+        onViewModelCreated(viewModel)
+        Log.d("UnifiedAuthScreen", "✅ Authentication services initialized")
+    }
+    
+    // Handle Google Sign-In result
+    LaunchedEffect(googleSignInLauncher) {
+        Log.d("UnifiedAuthScreen", "🔵 Google Sign-In launcher ready")
+    }
+    
+    // Monitor for Google Sign-In completion
+    LaunchedEffect(googleSignInLauncher) {
+        Log.d("UnifiedAuthScreen", "🔵 Monitoring Google Sign-In results")
     }
     
     Column(
@@ -168,7 +194,10 @@ fun UnifiedAuthScreen(
             
             // Google Sign-In Button
             Button(
-                onClick = { viewModel.signInWithGoogle(activity) },
+                onClick = { 
+                    Log.d("UnifiedAuthScreen", "🔵 Google Sign-In button clicked")
+                    viewModel.signInWithGoogle(activity) 
+                },
                 enabled = !state.isLoading,
                 modifier = Modifier
                     .fillMaxWidth()
